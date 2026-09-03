@@ -14,6 +14,6 @@ _Last updated: 2026-09-03_
 
 | File | Role | Key Dependencies |
 |---|---|---|
-| `workflow/info.plist` | The Alfred object graph: hotkey + `mdref` keyword entry points, both feeding a shared Script Action and Clipboard Output node | `cmd/markdown-ref-alfred` (invoked via relative path — Alfred sets CWD to the bundle root) |
+| `workflow/info.plist` | The Alfred object graph: Universal Action + `mdref` keyword entry points, both feeding a shared Script Action and Clipboard Output node | `cmd/markdown-ref-alfred` (invoked via relative path — Alfred sets CWD to the bundle root) |
 | `workflow/icon.png` | Workflow icon (carried over from the original project) | — |
 | `scripts/build-workflow.sh` | Builds `cmd/markdown-ref-alfred` as a universal (amd64+arm64) binary via `lipo`, zips `workflow/` into `dist/*.alfredworkflow` | — |

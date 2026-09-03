@@ -12,6 +12,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `docs/dev-charter/` and `docs/alfred-workflow-notes/` shared subtrees, and
   matching CI/repository settings.
 
+### Changed
+
+- Replaced the hotkey entry point with a Universal Action (selected text) —
+  both entry points now work immediately on import, no manual key binding
+  needed. See [ADR 0003](docs/decisions/0003-compatibility.md).
+- A reference with no matching `[X]: url` definition now still gets
+  renumbered and still gets a definition line — a blank one (`[N]:`) —
+  instead of being omitted. This keeps the output numbering always
+  contiguous and prevents a leftover original label from colliding with a
+  newly-assigned number. This is a deliberate behavior change from the
+  original workflow — see
+  [ADR 0004](docs/decisions/0004-blank-entries-for-undefined-references.md).
+
 ## [v1.0.0] - 2026-09-03
 
 ### Added

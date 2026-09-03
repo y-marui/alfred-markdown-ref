@@ -6,7 +6,7 @@
 	<string>com.y-marui.alfred-markdown-ref</string>
 	<key>connections</key>
 	<dict>
-		<key>91A01CD3-ACB5-439A-B115-7EE5179E2EEA</key>
+		<key>FFFD9586-6E4F-42EA-BF9E-0503272160C6</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -98,35 +98,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>focusedappvariable</key>
+				<key>acceptsfiles</key>
 				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
+				<key>acceptsmulti</key>
 				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
-				<key>leftcursor</key>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
 				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedApps</key>
-				<array/>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
+				<key>name</key>
+				<string>Markdown REF</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
+			<string>alfred.workflow.trigger.universalaction</string>
 			<key>uid</key>
-			<string>91A01CD3-ACB5-439A-B115-7EE5179E2EEA</string>
+			<string>FFFD9586-6E4F-42EA-BF9E-0503272160C6</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -263,13 +251,13 @@ characters long, so "[AAAA]" (or a URL used as its own link text) is left
 untouched.
 
 Usage:
-* Assign a hotkey (Workflow &gt; double-click the hotkey trigger) to convert
-  the current selection and paste the result.
+* Select text anywhere, invoke Universal Actions, and choose "Markdown REF"
+  to convert the selection and paste the result.
 * Type the "mdref" keyword to convert the clipboard and paste the result.
   Append a number to start renumbering from it instead of 1, e.g. "mdref 3".</string>
 	<key>uidata</key>
 	<dict>
-		<key>91A01CD3-ACB5-439A-B115-7EE5179E2EEA</key>
+		<key>FFFD9586-6E4F-42EA-BF9E-0503272160C6</key>
 		<dict>
 			<key>xpos</key>
 			<integer>50</integer>
