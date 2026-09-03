@@ -5,6 +5,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/y-marui/alfred-markdown-ref/actions/workflows/ci.yml/badge.svg)](https://github.com/y-marui/alfred-markdown-ref/actions/workflows/ci.yml)
+[![Charter Check](https://github.com/y-marui/alfred-markdown-ref/actions/workflows/dev-charter-check.yml/badge.svg)](https://github.com/y-marui/alfred-markdown-ref/actions/workflows/dev-charter-check.yml)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/y-marui?style=social)](https://github.com/sponsors/y-marui)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-donate-yellow.svg)](https://www.buymeacoffee.com/y.marui)
 
 Markdown の参照形式リンク(reference-style link)を採番し直す Alfred Workflow。
 
@@ -73,3 +76,6 @@ Issue・PR 歓迎。[CONTRIBUTING.md](CONTRIBUTING.md) を参照。
 ## License
 
 [MIT](LICENSE)
+
+---
+*この文書には英語版 [README.md](README.md) があります。編集時は同一コミットで更新してください。*

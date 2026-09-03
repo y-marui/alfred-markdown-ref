@@ -1,0 +1,25 @@
+name: Bug report
+description: Report an Alfred interaction, renumbering, or packaging problem
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include the input text and start number, if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: macOS, Alfred, and Workflow versions
+    validations:
+      required: true
