@@ -14,9 +14,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Replaced the hotkey entry point with a Universal Action (selected text) —
-  both entry points now work immediately on import, no manual key binding
-  needed. See [ADR 0003](docs/decisions/0003-compatibility.md).
+- Replaced the hotkey entry point with a Universal Action (selected text),
+  labeled "Markdown REF (Selection)" — both entry points now work
+  immediately on import, no manual key binding needed. The "(Selection)"
+  suffix distinguishes it from the `mdref` keyword, which Alfred also
+  auto-lists as a Universal Action candidate under the plain "Markdown REF"
+  label (a platform behavior, not something this workflow opts into). See
+  [ADR 0003](docs/decisions/0003-compatibility.md) and
+  [ADR 0005](docs/decisions/0005-universal-action-keyword-collision.md).
 - A reference with no matching `[X]: url` definition now still gets
   renumbered and still gets a definition line — a blank one (`[N]:`) —
   instead of being omitted. This keeps the output numbering always

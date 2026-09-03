@@ -33,8 +33,15 @@ Building from source is a contributor task — see [DEVELOPING.md](DEVELOPING.md
 
 ## Usage
 
-- Universal Action, on selected text: converts the selection and pastes
-  the result (numbered from 1)
+- Universal Action, on selected text: select text anywhere, invoke
+  Universal Actions, and choose **"Markdown REF (Selection)"** to convert
+  the selection and paste the result (numbered from 1). Alfred also
+  auto-lists the `mdref` keyword itself here, labeled plain "Markdown REF"
+  — pick "(Selection)" instead, since the keyword entry reads the
+  clipboard, not your selection (this dual listing is
+  [an Alfred feature](https://www.alfredapp.com/blog/tips-and-tricks/universal-actions-fine-control-over-workflow-integration/),
+  not a bug in this Workflow — see
+  [ADR 0005](docs/decisions/0005-universal-action-keyword-collision.md)).
 - `mdref` keyword: converts the clipboard and pastes the result. Append a
   number to start renumbering from it instead of 1, e.g. `mdref 3`
 

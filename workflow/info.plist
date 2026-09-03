@@ -107,7 +107,7 @@
 				<key>acceptsurls</key>
 				<false/>
 				<key>name</key>
-				<string>Markdown REF</string>
+				<string>Markdown REF (Selection)</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.universalaction</string>
@@ -251,8 +251,11 @@ characters long, so "[AAAA]" (or a URL used as its own link text) is left
 untouched.
 
 Usage:
-* Select text anywhere, invoke Universal Actions, and choose "Markdown REF"
-  to convert the selection and paste the result.
+* Select text anywhere, invoke Universal Actions, and choose
+  "Markdown REF (Selection)" to convert the selection and paste the result.
+  (Alfred also auto-lists the "mdref" keyword itself here, labeled
+  "Markdown REF" — pick "Markdown REF (Selection)" instead, since the
+  keyword entry reads the clipboard, not your selection.)
 * Type the "mdref" keyword to convert the clipboard and paste the result.
   Append a number to start renumbering from it instead of 1, e.g. "mdref 3".</string>
 	<key>uidata</key>

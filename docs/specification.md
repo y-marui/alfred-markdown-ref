@@ -9,14 +9,19 @@ Clipboard Output node.
 
 ## Entry points
 
-- **Universal Action**, on the current selection. Always starts numbering
-  from 1.
+- **Universal Action**, labeled "Markdown REF (Selection)", on the current
+  selection. Always starts numbering from 1.
 - **`mdref` keyword**, against the system clipboard's plain-text content. An
   optional trailing number sets the start number, e.g. `mdref 3`; omitted or
   empty defaults to 1.
 
 Both are fully wired in `workflow/info.plist` and usable immediately on
-import — see [ADR 0003](decisions/0003-compatibility.md).
+import — see [ADR 0003](decisions/0003-compatibility.md). Alfred also
+auto-lists the `mdref` keyword itself (labeled plain "Markdown REF") as a
+separate Universal Action candidate — a platform behavior, not something
+this workflow opts into; the "(Selection)" suffix on the real Universal
+Action's label exists specifically to distinguish it from that auto-added
+entry. See [ADR 0005](decisions/0005-universal-action-keyword-collision.md).
 
 ## Behavior
 
