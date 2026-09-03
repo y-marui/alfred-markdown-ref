@@ -1,0 +1,11 @@
+# Go
+/bin/
+*.test
+*.out
+
+# scripts/build-workflow.sh output
+/.build/
+/dist/
+
+# OS
+.DS_Store
