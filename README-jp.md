@@ -25,14 +25,21 @@ Markdown の参照形式リンク(reference-style link)を採番し直す Alfred
 
 [Releases](https://github.com/y-marui/alfred-markdown-ref/releases/latest) から
 `.alfredworkflow` をダウンロードし、ダブルクリックして Alfred に読み込む。
-ホットキーは初期状態では未割り当てなので、選択テキストへの変換を使う場合は
-Alfred の Workflow 編集画面でホットキートリガーをダブルクリックして割り当てる。
+下記どちらのエントリーポイントもセットアップ不要ですぐ使える。
 
 ソースからビルドする場合は [DEVELOPING.md](DEVELOPING.md) を参照。
 
 ## Usage
 
-- ホットキー: 選択中のテキストを変換してペーストする(採番は 1 から)
+- Universal Action(選択テキストに対して): テキストを選択した状態で
+  Universal Actions を呼び出し、**「Markdown REF (Selection)」**を選ぶと、
+  選択中のテキストを変換してペーストする(採番は 1 から)。Alfred の仕様上、
+  `mdref` キーワード自体も「Markdown REF」というラベルで同じ一覧に自動的に
+  表示されるが、そちらはクリップボードを対象にするため、選択テキストを
+  変換したい場合は必ず「(Selection)」の付いた方を選ぶこと(この二重表示は
+  [Alfred自体の仕様](https://www.alfredapp.com/blog/tips-and-tricks/universal-actions-fine-control-over-workflow-integration/)
+  であり、この Workflow の不具合ではない。詳細は
+  [ADR 0005](docs/decisions/0005-universal-action-keyword-collision.md) 参照)。
 - `mdref` キーワード: クリップボードのテキストを変換してペーストする。
   末尾に数値を付けると、その番号から採番を開始する(例: `mdref 3`)
 
@@ -63,11 +70,14 @@ This[AAAA] will be ignored.
 [2]: some url2
 [3]: some url3
 [4]: some url1
+[5]:
 [6]: some url5
 ```
 
-`mdref 3` のように開始番号を指定すると、3 から採番される
-(`[D]` のように定義を持たない参照は、番号だけ消費されて定義行には現れない)。
+`mdref 3` のように開始番号を指定すると、3 から採番される。`[D]` のように
+本文中のどこにも定義行を持たない参照も、採番自体はされる。ただし定義行は
+空欄(上の`[5]:`)になる。省略も欠番もしないため、出力の採番は常に連続し、
+元のラベルが新しい番号と衝突することもない。
 
 ## Contributing
 

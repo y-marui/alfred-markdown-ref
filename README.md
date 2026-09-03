@@ -26,15 +26,22 @@ link text) is left untouched.
 
 Download the `.alfredworkflow` from the
 [latest release](https://github.com/y-marui/alfred-markdown-ref/releases/latest)
-and double-click it to load it into Alfred. The hotkey trigger ships
-unassigned; if you want to convert a selection, double-click it in Alfred's
-Workflow editor and assign one.
+and double-click it to load it into Alfred. Both entry points below work
+immediately, no setup required.
 
 Building from source is a contributor task — see [DEVELOPING.md](DEVELOPING.md).
 
 ## Usage
 
-- Hotkey: converts the current selection and pastes the result (numbered from 1)
+- Universal Action, on selected text: select text anywhere, invoke
+  Universal Actions, and choose **"Markdown REF (Selection)"** to convert
+  the selection and paste the result (numbered from 1). Alfred also
+  auto-lists the `mdref` keyword itself here, labeled plain "Markdown REF"
+  — pick "(Selection)" instead, since the keyword entry reads the
+  clipboard, not your selection (this dual listing is
+  [an Alfred feature](https://www.alfredapp.com/blog/tips-and-tricks/universal-actions-fine-control-over-workflow-integration/),
+  not a bug in this Workflow — see
+  [ADR 0005](docs/decisions/0005-universal-action-keyword-collision.md)).
 - `mdref` keyword: converts the clipboard and pastes the result. Append a
   number to start renumbering from it instead of 1, e.g. `mdref 3`
 
@@ -65,12 +72,15 @@ This[AAAA] will be ignored.
 [2]: some url2
 [3]: some url3
 [4]: some url1
+[5]:
 [6]: some url5
 ```
 
-Specifying a start number, e.g. `mdref 3`, renumbers from 3 instead
-(a reference without a definition, like `[D]` above, still consumes a
-number but never gets a definition line).
+Specifying a start number, e.g. `mdref 3`, renumbers from 3 instead. A
+reference with no definition anywhere in the text, like `[D]` above, still
+gets renumbered and still gets a definition line — just a blank one (`[5]:`
+above) — so the output numbering is always contiguous and never reuses a
+number a leftover label happened to already have.
 
 ## Contributing
 

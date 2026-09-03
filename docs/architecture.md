@@ -15,9 +15,10 @@ argument/clipboard wiring was kept rather than reimplemented in Go.
 
 - `cmd/markdown-ref-alfred` — a single command, no subcommands
 
-Two Alfred triggers reach it, both wired in `workflow/info.plist`: a hotkey
-(selection, ships unassigned — see [ADR 0003](decisions/0003-compatibility.md))
-and the `mdref` keyword (clipboard, optional start-number argument). See
+Two Alfred triggers reach it, both wired in `workflow/info.plist` and usable
+immediately on import (see [ADR 0003](decisions/0003-compatibility.md)): a
+Universal Action (selection) and the `mdref` keyword (clipboard, optional
+start-number argument). See
 [docs/specification.md](specification.md#entry-points).
 
 ## Directory Structure

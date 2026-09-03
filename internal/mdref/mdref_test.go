@@ -28,6 +28,7 @@ This[AAAA] will be ignored.
 [2]: some url2
 [3]: some url3
 [4]: some url1
+[5]:
 [6]: some url5`
 
 	got, err := Convert(sampleInput, 1)
@@ -51,6 +52,7 @@ This[AAAA] will be ignored.
 [4]: some url2
 [5]: some url3
 [6]: some url1
+[7]:
 [8]: some url5`
 
 	got, err := Convert(sampleInput, 3)
@@ -76,6 +78,37 @@ func TestConvert_NoReferences(t *testing.T) {
 		t.Fatalf("Convert() error = %v", err)
 	}
 	if want := "plain text with no refs\n"; got != want {
+		t.Errorf("Convert() = %q, want %q", got, want)
+	}
+}
+
+func TestConvert_UndefinedReferenceGetsBlankEntry(t *testing.T) {
+	input := "a[X] b[Y] c[Z]\n\n[X]: url-x\n[Z]: url-z\n"
+	want := "a[1] b[2] c[3]\n\n[1]: url-x\n[2]:\n[3]: url-z"
+
+	got, err := Convert(input, 1)
+	if err != nil {
+		t.Fatalf("Convert() error = %v", err)
+	}
+	if got != want {
+		t.Errorf("Convert() = %q, want %q", got, want)
+	}
+}
+
+// A regression case for the numeric-collision risk: an undefined reference
+// whose original label already looks like a plausible renumbered target
+// (here "[2]") must not be left as-is, or it would be visually
+// indistinguishable from — and could literally collide with — a
+// genuinely-renumbered reference.
+func TestConvert_UndefinedNumericLabelStillRenumbered(t *testing.T) {
+	input := "a[X] b[2] c[Y]\n\n[X]: url-x\n[Y]: url-y\n"
+	want := "a[1] b[2] c[3]\n\n[1]: url-x\n[2]:\n[3]: url-y"
+
+	got, err := Convert(input, 1)
+	if err != nil {
+		t.Fatalf("Convert() error = %v", err)
+	}
+	if got != want {
 		t.Errorf("Convert() = %q, want %q", got, want)
 	}
 }
