@@ -6,6 +6,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -20,7 +21,16 @@ func main() {
 		fail(err)
 	}
 
-	result, err := mdref.Convert(os.Getenv("text"), start)
+	text := os.Getenv("text")
+	if text == "" {
+		// mdref.Convert("", start) returns "", nil — an empty clipboard or
+		// selection would otherwise sail through as a "successful" empty
+		// result and silently overwrite whatever was on the clipboard
+		// (e.g. an image) with nothing. Reject it here instead.
+		fail(errors.New("clipboard or selection has no text"))
+	}
+
+	result, err := mdref.Convert(text, start)
 	if err != nil {
 		fail(err)
 	}
