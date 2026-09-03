@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- `cmd/markdown-ref-alfred`: an empty clipboard/selection, or a clipboard
+  holding non-text content (e.g. an image), silently overwrote the
+  clipboard with an empty string — `mdref.Convert("", start)` returns `""`
+  with no error, so the empty result sailed through to Alfred's Clipboard
+  Output node like any other successful run. Now reported via the existing
+  notification-and-exit-non-zero failure path (see [docs/specification.md](docs/specification.md)
+  Failure behavior) instead, same as an invalid start value, so Alfred's
+  Clipboard Output node has nothing to paste and the original clipboard is
+  left untouched.
+
 ## [v1.0.0] - 2026-09-03
 
 ### Added

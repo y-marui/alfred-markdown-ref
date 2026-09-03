@@ -44,11 +44,13 @@ Full examples are in [README.md](../README.md#usage).
 
 ## Failure behavior
 
-An invalid start value (non-numeric, or `<= 0`) is reported via a macOS
-notification and the process exits non-zero without writing anything to
-stdout — Alfred's Clipboard Output node then has nothing to paste, so the
-original clipboard/selection is left untouched. See
-`cmd/markdown-ref-alfred/main.go`'s `fail` function.
+An invalid start value (non-numeric, or `<= 0`), or empty input text (an
+empty clipboard/selection, or a clipboard holding non-text content such as
+an image — Alfred's `{clipboard}` placeholder resolves to an empty string
+in both cases), is reported via a macOS notification and the process exits
+non-zero without writing anything to stdout — Alfred's Clipboard Output
+node then has nothing to paste, so the original clipboard/selection is left
+untouched. See `cmd/markdown-ref-alfred/main.go`'s `fail` function.
 
 ## Accessibility and keyboard flow
 
