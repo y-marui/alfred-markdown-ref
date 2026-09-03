@@ -76,6 +76,21 @@ repos:
             \.pre-commit-config\.yaml$
           )
 
+  # ----------------------------------------------------------------
+  # Block commits on the default branch
+  # (server-side Ruleset only stops direct pushes; this catches local
+  # commits onto main/master before that point — see CI_POLICY.md
+  # Branch Protection (Ruleset))
+  # ----------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: check-not-on-default-branch
+        name: Block commits on the default branch
+        language: script
+        entry: scripts/check-not-on-default-branch.sh
+        pass_filenames: false
+        always_run: true
+
   # BEGIN DEV-CHARTER ONLY
   # ----------------------------------------------------------------
   # VERSION date check
@@ -102,6 +117,32 @@ repos:
         entry: scripts/check-charter-manifest.sh
         pass_filenames: false
         always_run: true
+
+  # ----------------------------------------------------------------
+  # <name>-<branch>.md variant のペア整合性チェック
+  # (variant が [full-exclude]・対応する基底ファイル・タグ重複無しを満たすか)
+  # ----------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: check-variant-parity
+        name: Check branch variant parity
+        language: script
+        entry: scripts/check-variant-parity.sh
+        pass_filenames: false
+        always_run: true
+
+  # ----------------------------------------------------------------
+  # lite (等) 配布ブランチからの相対リンク切れチェック
+  # (lite タグ付きファイルが full 限定ファイルへ相対リンクしていないか)
+  # ----------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: check-lite-cross-references
+        name: Check lite cross-references
+        language: script
+        entry: scripts/check-lite-cross-references.sh
+        pass_filenames: false
+        always_run: true
   # END DEV-CHARTER ONLY
 
   # ----------------------------------------------------------------
@@ -113,7 +154,7 @@ repos:
       - id: check-local-charter-version
         name: Check local dev-charter version
         language: script
-        entry: src/scripts/check-local-charter-version.sh
+        entry: scripts/check-local-charter-version.sh
         pass_filenames: false
         always_run: true
 
@@ -128,7 +169,7 @@ repos:
       - id: check-charter-subtree-edit
         name: Block direct edits under dev-charter subtree
         language: script
-        entry: src/scripts/check-charter-subtree-edit.sh
+        entry: scripts/check-charter-subtree-edit.sh
         pass_filenames: false
         always_run: true
 
@@ -142,7 +183,7 @@ repos:
       - id: check-charter-ci-template
         name: Check charter CI template
         language: script
-        entry: src/scripts/check-charter-ci-template.sh
+        entry: scripts/check-charter-ci-template.sh
         pass_filenames: false
         always_run: true
 
@@ -156,7 +197,7 @@ repos:
       - id: check-language-pair-sync
         name: Check language pair sync
         language: script
-        entry: src/scripts/check-language-pair-sync.sh
+        entry: scripts/check-language-pair-sync.sh
         pass_filenames: false
         always_run: true
 
@@ -168,7 +209,7 @@ repos:
       - id: check-license-exists
         name: Check LICENSE file exists
         language: script
-        entry: src/scripts/check-license-exists.sh
+        entry: scripts/check-license-exists.sh
         pass_filenames: false
         always_run: true
 
@@ -180,7 +221,7 @@ repos:
       - id: check-dotenv-gitignore
         name: Check .env.example / .gitignore consistency
         language: script
-        entry: src/scripts/check-dotenv-gitignore.sh
+        entry: scripts/check-dotenv-gitignore.sh
         pass_filenames: false
         always_run: true
 
@@ -194,7 +235,7 @@ repos:
       - id: check-language-pair-footer
         name: Check language pair header/footer
         language: script
-        entry: src/scripts/check-language-pair-footer.sh
+        entry: scripts/check-language-pair-footer.sh
         pass_filenames: false
         always_run: true
 
@@ -208,7 +249,7 @@ repos:
       - id: check-ai-context-reference
         name: Check AI_CONTEXT.md reference
         language: script
-        entry: src/scripts/check-ai-context-reference.sh
+        entry: scripts/check-ai-context-reference.sh
         pass_filenames: false
         always_run: true
 
@@ -221,7 +262,7 @@ repos:
       - id: check-python-package-management
         name: Check Python package management
         language: script
-        entry: src/scripts/check-python-package-management.sh
+        entry: scripts/check-python-package-management.sh
         pass_filenames: false
         always_run: true
 
@@ -234,7 +275,7 @@ repos:
       - id: check-readme-placeholders
         name: Check README/LICENSE/FUNDING placeholders
         language: script
-        entry: src/scripts/check-readme-placeholders.sh
+        entry: scripts/check-readme-placeholders.sh
         pass_filenames: false
         always_run: true
 
@@ -249,7 +290,7 @@ repos:
       - id: check-conventional-commit
         name: Check conventional commit message
         language: script
-        entry: src/scripts/check-conventional-commit.sh
+        entry: scripts/check-conventional-commit.sh
         stages: [commit-msg]
 
   # ----------------------------------------------------------------
@@ -260,7 +301,7 @@ repos:
       - id: check-markdown-heading-language
         name: Check Markdown section heading language
         language: script
-        entry: src/scripts/check-markdown-heading-language.sh
+        entry: scripts/check-markdown-heading-language.sh
         files: '\.md$'
 
   # ----------------------------------------------------------------
@@ -305,7 +346,7 @@ repos:
           echo "warning: pwsh not found; skipping PowerShell lint" >&2;
           exit 0;
           fi;
-          pwsh -NoProfile -NonInteractive -File src/scripts/check-powershell-lint.ps1 "$@"
+          pwsh -NoProfile -NonInteractive -File scripts/check-powershell-lint.ps1 "$@"
           ' --
         files: '\.ps1$'
         # Adopting projects install this subtree read-only (see
