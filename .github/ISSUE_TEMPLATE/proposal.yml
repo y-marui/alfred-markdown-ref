@@ -1,0 +1,25 @@
+name: Workflow proposal
+description: Propose an Alfred interaction, renumbering, or packaging change
+title: "proposal: "
+labels:
+  - decision-needed
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Alfred behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: Accepted behavior will be persisted in docs/specification.md or an ADR.
+          required: true

@@ -27,6 +27,10 @@ Produces `dist/markdown-ref-<version>.alfredworkflow`, a universal
 
 ## Releasing
 
-Bump `version` in `workflow/info.plist`, then push a `vX.Y.Z` tag matching it.
-`.github/workflows/release.yml` builds the workflow and attaches it to a
-GitHub Release.
+See [docs/release-process.md](docs/release-process.md).
+
+## Shared docs
+
+`docs/dev-charter/` and `docs/alfred-workflow-notes/` are read-only
+`git subtree`s. Do not edit them directly — pre-commit blocks it. Update via
+`make update-charter` / `make update-workflow-notes`.
