@@ -4,12 +4,18 @@
 
 An Alfred Workflow (Go): `cmd/markdown-ref-alfred` is a thin CLI that reads
 the `$text`/`$start` environment variables Alfred's Argument nodes set,
-renumbers via `internal/mdref`, and writes the result to stdout for Alfred's
-own Clipboard Output node to paste. `scripts/build-workflow.sh` packages the
-universal (amd64+arm64) binary with `workflow/info.plist` and
+renumbers via `internal/mdref`, and prints Alfred's workflow-variables JSON
+envelope — the renumbered text as `arg`, and a `status` variable ("ok" or
+"error") — instead of raw stdout. A native Conditional node reads `{status}`
+and routes to Alfred's own Clipboard Output node (success) or a Post
+Notification node showing `{message}` (failure); the binary never calls
+`osascript` or posts a notification itself. `scripts/build-workflow.sh`
+packages the universal (amd64+arm64) binary with `workflow/info.plist` and
 `workflow/icon.png` into a `.alfredworkflow`. See
 [ADR 0001](decisions/0001-go-reimplementation.md) for why the Alfred-native
-argument/clipboard wiring was kept rather than reimplemented in Go.
+argument/clipboard wiring was kept rather than reimplemented in Go, and
+[ADR 0006](decisions/0006-native-error-branching.md) for the Conditional-based
+error branching.
 
 ## Entry Points
 
@@ -36,4 +42,6 @@ start-number argument). See
 ## Key Dependencies
 
 None. `internal/mdref` uses only the Go standard library (`regexp`,
-`sort`, `strconv`, `strings`).
+`sort`, `strconv`, `strings`), and `cmd/markdown-ref-alfred` shells out to no
+external process at all — errors are reported via a workflow variable, not
+`osascript`.

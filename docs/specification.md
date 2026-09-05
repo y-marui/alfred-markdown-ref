@@ -47,10 +47,15 @@ Full examples are in [README.md](../README.md#usage).
 An invalid start value (non-numeric, or `<= 0`), or empty input text (an
 empty clipboard/selection, or a clipboard holding non-text content such as
 an image — Alfred's `{clipboard}` placeholder resolves to an empty string
-in both cases), is reported via a macOS notification and the process exits
-non-zero without writing anything to stdout — Alfred's Clipboard Output
-node then has nothing to paste, so the original clipboard/selection is left
-untouched. See `cmd/markdown-ref-alfred/main.go`'s `fail` function.
+in both cases), is reported via a native Post Notification node instead of
+Alfred's Clipboard Output node. The binary always prints Alfred's
+workflow-variables JSON envelope with a `status` variable ("ok"/"error");
+`workflow/info.plist`'s Conditional node routes `status: error` to the
+notification (showing the `message` variable) and everything else to
+Clipboard Output, so a failure's empty `arg` never reaches the clipboard and
+the original clipboard/selection is left untouched. See
+`cmd/markdown-ref-alfred/main.go`'s `fail`/`succeed` functions and
+[ADR 0006](decisions/0006-native-error-branching.md).
 
 ## Accessibility and keyboard flow
 
