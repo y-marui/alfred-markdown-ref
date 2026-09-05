@@ -6,14 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Failure reporting (empty clipboard/selection, invalid start value) moved
+  off `osascript` and onto a native Post Notification node reached through a
+  new Conditional node in `workflow/info.plist`, branching on a `status`
+  workflow variable the binary now always sets. `cmd/markdown-ref-alfred` no
+  longer shells out to any external process. See
+  [ADR 0006](docs/decisions/0006-native-error-branching.md).
+
 ### Fixed
 
 - `cmd/markdown-ref-alfred`: an empty clipboard/selection, or a clipboard
   holding non-text content (e.g. an image), silently overwrote the
   clipboard with an empty string — `mdref.Convert("", start)` returns `""`
   with no error, so the empty result sailed through to Alfred's Clipboard
-  Output node like any other successful run. Now reported via the existing
-  notification-and-exit-non-zero failure path (see [docs/specification.md](docs/specification.md)
+  Output node like any other successful run. Now reported via the
+  Conditional-routed failure path (see [docs/specification.md](docs/specification.md)
   Failure behavior) instead, same as an invalid start value, so Alfred's
   Clipboard Output node has nothing to paste and the original clipboard is
   left untouched.
