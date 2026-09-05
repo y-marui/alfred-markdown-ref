@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
   push:
-    branches: [main]
+    branches: [main, update-charter]
   workflow_dispatch:
 
 concurrency:
@@ -49,10 +49,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # gitleaks needs full history
+
       - uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
-      - uses: pre-commit/action@v3.0.1
+
+      - name: Run pre-commit (all hooks including gitleaks)
+        uses: pre-commit/action@v3.0.1
+        env:
+          # powershell-lint is a local-only convenience check (see
+          # .pre-commit-config.yaml); it isn't required to gate merges.
+          SKIP: powershell-lint
 
   lint:
     name: Lint
@@ -61,9 +70,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
+
       - uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
+
       - name: gofmt
         run: |
           out=$(gofmt -l .)
@@ -72,6 +83,7 @@ jobs:
             echo "$out"
             exit 1
           fi
+
       - run: go vet ./...
 
   test:
@@ -81,22 +93,36 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
+
       - uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
-      - run: go test ./...
+
+      - name: Run tests
+        run: go test ./...
 
   build:
     name: Build
+    runs-on: macos-latest
     needs: [changes, security, lint, test]
     if: needs.changes.outputs.code == 'true'
-    runs-on: macos-latest
+
     steps:
       - uses: actions/checkout@v7
+
       - uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
-      - run: go build ./...
+
+      - name: Build .alfredworkflow
+        run: make build-workflow
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: alfredworkflow
+          path: dist/*.alfredworkflow
+          retention-days: 7
 
   gate:
     name: CI
