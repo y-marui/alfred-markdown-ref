@@ -1,9 +1,21 @@
 exclude: |
   (?x)^(
+    node_modules/|
+    vendor/|
     \.git/|
+    \.yarn/|
     dist/|
-    \.build/|
-    go\.sum$
+    build/|
+    \.next/|
+    __pycache__/|
+    .*\.min\.js$|
+    .*\.min\.css$|
+    go\.sum$|
+    package-lock\.json$|
+    yarn\.lock$|
+    Gemfile\.lock$|
+    Cargo\.lock$|
+    poetry\.lock$
   )
 
 repos:
@@ -39,7 +51,7 @@ repos:
       - id: detect-dotenv
         name: Block .env files
         language: fail
-        entry: ".env files must not be committed; use a .env.example with dummy values instead."
+        entry: '.env ファイルはコミット禁止。ダミー値のみの .env.example を使うこと。'
         files: '(^|/)\.env(\.[^.]+)?$'
         exclude: '(^|/)\.env\.(example|sample|template)$'
 
@@ -53,8 +65,8 @@ repos:
         language: pygrep
         entry: '(/Users/[A-Za-z0-9_.-]+/|/home/[A-Za-z0-9_.-]+/|C:\\Users\\)'
         types_or: [text]
-        # Note: exclude matches file PATHS. Config files carrying the
-        # allowlist patterns themselves are excluded.
+        # Note: exclude はファイル「パス」に対するマッチ。
+        # 設定ファイル自身（allowlist パターンを含む）は除外する。
         exclude: |
           (?x)(
             \.md$|
@@ -63,6 +75,7 @@ repos:
             \.gitleaks\.toml$|
             \.pre-commit-config\.yaml$
           )
+
 
   # ----------------------------------------------------------------
   # Local dev-charter version check
@@ -78,9 +91,9 @@ repos:
         always_run: true
 
   # ----------------------------------------------------------------
-  # Block direct edits under the installed dev-charter / alfred-workflow-notes
-  # subtrees (only `git subtree add`/`pull --squash` may touch them; those
-  # bypass commit hooks entirely, so anything this hook sees staged under a
+  # Block direct edits under the installed dev-charter subtree
+  # (only `git subtree add`/`pull --squash` may touch it; those bypass
+  # commit hooks entirely, so anything this hook sees staged under the
   # prefix is a direct edit)
   # ----------------------------------------------------------------
   - repo: local
@@ -195,8 +208,7 @@ repos:
 
   # ----------------------------------------------------------------
   # Python package management (topics/PYTHON_DEV_ENV.md)
-  # (blocks requirements.txt / missing uv.lock when pyproject.toml exists;
-  # a no-op here since this project has no pyproject.toml)
+  # (blocks requirements.txt / missing uv.lock when pyproject.toml exists)
   # ----------------------------------------------------------------
   - repo: local
     hooks:
@@ -223,7 +235,8 @@ repos:
   # ----------------------------------------------------------------
   # Conventional Commits message format (PROJECT_LIFECYCLE.md)
   # (commit-msg stage: requires `pre-commit install --hook-type
-  # commit-msg` in addition to the default pre-commit stage install)
+  # commit-msg` in addition to the default pre-commit stage install —
+  # see SECURITY_POLICY.md Setup Steps for the core.hooksPath caveat)
   # ----------------------------------------------------------------
   - repo: local
     hooks:
@@ -246,7 +259,12 @@ repos:
 
   # ----------------------------------------------------------------
   # Shell scripts
-  # (Lints the staged (index) content rather than the working-tree bytes.)
+  # (Lints the staged (index) content rather than the working-tree
+  # bytes: on Windows checkouts with core.autocrlf=true, git's clean
+  # filter already normalizes CRLF->LF on `git add`, so the index is
+  # LF even though the working tree shows CRLF. This avoids false
+  # SC1017 hits from the local checkout while still catching real
+  # CRLF committed with core.autocrlf=false.)
   # ----------------------------------------------------------------
   - repo: local
     hooks:
@@ -261,6 +279,35 @@ repos:
           done; exit $status' --
         types: [shell]
         exclude: '\.zsh$'
+        require_serial: true
+
+  # ----------------------------------------------------------------
+  # PowerShell scripts
+  # (PSScriptAnalyzer, installed locally on first run. Skipped in CI —
+  # see ci.yml's SKIP env — it isn't required to gate merges; it exists
+  # for local parity with the Linux/macOS shellcheck coverage above,
+  # for scripts/*.ps1 counterparts of the bash scripts.)
+  # ----------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: powershell-lint
+        name: PowerShell script lint (PSScriptAnalyzer)
+        language: system
+        entry: >-
+          bash -c '
+          if ! command -v pwsh >/dev/null 2>&1; then
+          echo "warning: pwsh not found; skipping PowerShell lint" >&2;
+          exit 0;
+          fi;
+          pwsh -NoProfile -NonInteractive -File scripts/check-powershell-lint.ps1 "$@"
+          ' --
+        files: '\.ps1$'
+        # Adopting projects install this subtree read-only (see
+        # check-subtree-edit.sh); its own scripts/*.ps1 aren't
+        # something the adopter can fix, so skip them by default. Assumes
+        # the default SUBTREE_PREFIX (docs/dev-charter) — adjust this
+        # pattern if installed elsewhere.
+        exclude: '^docs/dev-charter/'
         require_serial: true
 
   # ----------------------------------------------------------------
