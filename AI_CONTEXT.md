@@ -9,6 +9,7 @@ Read as needed (any order):
 - `CONTRIBUTING.md` (PR/Issue rules)
 - `docs/specification.md` (the normative source for Workflow behavior)
 - `docs/release-process.md` (how a Workflow release is cut and published)
+- `docs/alfred-gallery-readiness.md` (Alfred Gallery submission checklist and open blockers)
 - `docs/decisions/` (ADRs — architecture decisions and their rationale)
 - `docs/architecture.md` (module/component structure)
 - `docs/alfred-workflow-notes/workflow-object-schema.md` (reverse-engineered `info.plist` object schema — Alfred doesn't document this; read before touching `workflow/info.plist`)

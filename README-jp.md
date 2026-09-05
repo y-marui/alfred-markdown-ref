@@ -31,17 +31,20 @@ Markdown の参照形式リンク(reference-style link)を採番し直す Alfred
 
 ## Usage
 
-- Universal Action(選択テキストに対して): テキストを選択した状態で
-  Universal Actions を呼び出し、**「Markdown REF (Selection)」**を選ぶと、
-  選択中のテキストを変換してペーストする(採番は 1 から)。Alfred の仕様上、
-  `mdref` キーワード自体も「Markdown REF」というラベルで同じ一覧に自動的に
-  表示されるが、そちらはクリップボードを対象にするため、選択テキストを
-  変換したい場合は必ず「(Selection)」の付いた方を選ぶこと(この二重表示は
+Universal Action で、Markdown の参照形式リンクを採番し直す。
+
+- テキストを選択した状態で Universal Actions を呼び出し、
+  **「Markdown REF (Selection)」**を選ぶと、選択中のテキストを変換して
+  ペーストする(採番は 1 から)。Alfred の仕様上、`mdref` キーワード自体も
+  「Markdown REF」というラベルで同じ一覧に自動的に表示されるが、そちらは
+  クリップボードを対象にするため、選択テキストを変換したい場合は必ず
+  「(Selection)」の付いた方を選ぶこと(この二重表示は
   [Alfred自体の仕様](https://www.alfredapp.com/blog/tips-and-tricks/universal-actions-fine-control-over-workflow-integration/)
   であり、この Workflow の不具合ではない。詳細は
   [ADR 0005](docs/decisions/0005-universal-action-keyword-collision.md) 参照)。
-- `mdref` キーワード: クリップボードのテキストを変換してペーストする。
-  末尾に数値を付けると、その番号から採番を開始する(例: `mdref 3`)
+
+あるいは `mdref` キーワードで、クリップボードの内容を変換する。末尾に数値を
+付けると、その番号から採番を開始する(例: `mdref 3`)。
 
 ```input.md
 This is sample[B] of this workflow[1].
