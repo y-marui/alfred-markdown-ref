@@ -4,26 +4,27 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.y-marui.alfred-markdown-ref</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>FFFD9586-6E4F-42EA-BF9E-0503272160C6</key>
+		<key>1C50FCE6-5082-468F-A082-1C355EC3B9DB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C065A6E0-2DF6-4494-BBBE-3B682D093033</string>
+				<string>66E373AD-768E-4D59-9498-37A72ACE01A6</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>sourceoutputuid</key>
+				<string>CA33DDD5-967D-4A98-A2D4-BF29C9165242</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-		</array>
-		<key>C065A6E0-2DF6-4494-BBBE-3B682D093033</key>
-		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>89CCD899-DDFE-41B0-9538-7B1A48D77D55</string>
+				<string>6D42D8DA-E1F8-4120-A55B-A9B136604248</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -37,6 +38,32 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>CD081147-E514-4D78-B474-3739E4D6045D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>89CCD899-DDFE-41B0-9538-7B1A48D77D55</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1C50FCE6-5082-468F-A082-1C355EC3B9DB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C065A6E0-2DF6-4494-BBBE-3B682D093033</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>89CCD899-DDFE-41B0-9538-7B1A48D77D55</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -71,36 +98,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>89CCD899-DDFE-41B0-9538-7B1A48D77D55</key>
+		<key>FFFD9586-6E4F-42EA-BF9E-0503272160C6</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1C50FCE6-5082-468F-A082-1C355EC3B9DB</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>1C50FCE6-5082-468F-A082-1C355EC3B9DB</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>66E373AD-768E-4D59-9498-37A72ACE01A6</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>sourceoutputuid</key>
-				<string>CA33DDD5-967D-4A98-A2D4-BF29C9165242</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>6D42D8DA-E1F8-4120-A55B-A9B136604248</string>
+				<string>C065A6E0-2DF6-4494-BBBE-3B682D093033</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -338,48 +340,6 @@ Usage:
   Append a number to start renumbering from it instead of 1, e.g. "mdref 3".</string>
 	<key>uidata</key>
 	<dict>
-		<key>FFFD9586-6E4F-42EA-BF9E-0503272160C6</key>
-		<dict>
-			<key>xpos</key>
-			<integer>50</integer>
-			<key>ypos</key>
-			<integer>20</integer>
-		</dict>
-		<key>C065A6E0-2DF6-4494-BBBE-3B682D093033</key>
-		<dict>
-			<key>xpos</key>
-			<integer>230</integer>
-			<key>ypos</key>
-			<integer>20</integer>
-		</dict>
-		<key>80D8425A-03A5-4E8F-9809-1EED10D9B6D3</key>
-		<dict>
-			<key>xpos</key>
-			<integer>50</integer>
-			<key>ypos</key>
-			<integer>180</integer>
-		</dict>
-		<key>CD081147-E514-4D78-B474-3739E4D6045D</key>
-		<dict>
-			<key>xpos</key>
-			<integer>230</integer>
-			<key>ypos</key>
-			<integer>180</integer>
-		</dict>
-		<key>D25182EA-281E-4796-9E0E-DC4CD0FCF8A1</key>
-		<dict>
-			<key>xpos</key>
-			<integer>410</integer>
-			<key>ypos</key>
-			<integer>180</integer>
-		</dict>
-		<key>89CCD899-DDFE-41B0-9538-7B1A48D77D55</key>
-		<dict>
-			<key>xpos</key>
-			<integer>590</integer>
-			<key>ypos</key>
-			<integer>100</integer>
-		</dict>
 		<key>1C50FCE6-5082-468F-A082-1C355EC3B9DB</key>
 		<dict>
 			<key>xpos</key>
@@ -400,6 +360,48 @@ Usage:
 			<integer>950</integer>
 			<key>ypos</key>
 			<integer>40</integer>
+		</dict>
+		<key>80D8425A-03A5-4E8F-9809-1EED10D9B6D3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>89CCD899-DDFE-41B0-9538-7B1A48D77D55</key>
+		<dict>
+			<key>xpos</key>
+			<integer>590</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>C065A6E0-2DF6-4494-BBBE-3B682D093033</key>
+		<dict>
+			<key>xpos</key>
+			<integer>230</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>CD081147-E514-4D78-B474-3739E4D6045D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>230</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>D25182EA-281E-4796-9E0E-DC4CD0FCF8A1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>410</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>FFFD9586-6E4F-42EA-BF9E-0503272160C6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
