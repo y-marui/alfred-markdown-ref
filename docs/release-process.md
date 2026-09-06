@@ -21,6 +21,13 @@ version check and release-creation steps only run on an actual
 `refs/tags/*` push) — use it to validate the build after changing the
 workflow, before ever pushing a version tag.
 
+## Cutting a release without Actions
+
+If Actions can't run (e.g. a billing/spending-limit issue), `scripts/release.sh`
+(wired as `make release`) reproduces the same build and checksum steps
+locally and publishes the same GitHub Release, prompting for confirmation
+before pushing the tag or creating the release.
+
 ## Verifying a downloaded `.alfredworkflow`
 
 ```bash
