@@ -65,10 +65,10 @@ such as `AI_CONTEXT.md` and `README.md`.
 - A change that alters observable Workflow behavior (the renumbering algorithm, entry points, output format) must update `docs/specification.md` or add an ADR under `docs/decisions/`
 - `internal/mdref` has no Alfred/macOS dependency and must stay unit-testable on its own (`go test ./...` runs on any platform)
 - `cmd/markdown-ref-alfred/main.go` is the only binary Alfred executes — argv/env-var dispatch and panic recovery only, no business logic
-- Go toolchain: `gofmt` + `go vet` (CI-enforced), `go test ./...`; `go.mod` stays dependency-free unless clearly justified
-- Alfred invokes the universal (amd64+arm64) binary directly — no interpreter selection or runtime wrapper script; see `scripts/build-workflow.sh`
+- Go toolchain (version management, gofmt/go vet, dependency policy) follows [`docs/dev-charter/topics/alfred/ALFRED_DEV_ENV.md`](docs/dev-charter/topics/alfred/ALFRED_DEV_ENV.md)'s "Toolchain"/"Dependency Policy" — not restated here
+- Alfred Runtime (universal-binary build via `lipo`, no interpreter/wrapper script) follows the same doc's "Alfred Runtime" section; this project's build script is `scripts/build-workflow.sh`
 - User-facing settings belong in Alfred's Configuration Builder (`workflow/info.plist`'s `userconfigurationconfig`), never the `variables` key — none declared currently
-- Before adding Go code (or `osascript`) for a new macOS/Alfred integration, check `docs/alfred-workflow-notes/workflow-object-schema.md`'s native-vs-Go notes and dev-charter's `topics/ALFRED_DEV_ENV.md` — a native Alfred object may already cover it; [ADR 0006](docs/decisions/0006-native-error-branching.md) is an example of moving logic the other way, off Go and onto a native Conditional node
+- Before adding Go code (or `osascript`) for a new macOS/Alfred integration, check `docs/alfred-workflow-notes/workflow-object-schema.md`'s native-vs-Go notes and dev-charter's `topics/alfred/ALFRED_DEV_ENV.md` — a native Alfred object may already cover it; [ADR 0006](docs/decisions/0006-native-error-branching.md) is an example of moving logic the other way, off Go and onto a native Conditional node
 - Script Filter response time target: under 100ms (a compiled binary usually has headroom)
 
 ## AI Tool Assignments
