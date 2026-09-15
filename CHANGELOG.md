@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Gallery-style screenshots of the Universal Action and `mdref` keyword entry points in README/README-jp.
+
 ### Changed
 
 - Failure reporting (empty clipboard/selection, invalid start value) moved

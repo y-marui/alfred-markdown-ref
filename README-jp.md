@@ -33,6 +33,8 @@ Markdown の参照形式リンク(reference-style link)を採番し直す Alfred
 
 Universal Action で、Markdown の参照形式リンクを採番し直す。
 
+![Markdown REF (Selection) を選ぶ Universal Action の画面](images/universal-action.png)
+
 - テキストを選択した状態で Universal Actions を呼び出し、
   **「Markdown REF (Selection)」**を選ぶと、選択中のテキストを変換して
   ペーストする(採番は 1 から)。Alfred の仕様上、`mdref` キーワード自体も
@@ -45,6 +47,8 @@ Universal Action で、Markdown の参照形式リンクを採番し直す。
 
 あるいは `mdref` キーワードで、クリップボードの内容を変換する。末尾に数値を
 付けると、その番号から採番を開始する(例: `mdref 3`)。
+
+![mdref キーワードの実行結果](images/mdref.png)
 
 ```input.md
 This is sample[B] of this workflow[1].
