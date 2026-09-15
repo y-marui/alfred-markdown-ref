@@ -35,6 +35,8 @@ Building from source is a contributor task — see [DEVELOPING.md](DEVELOPING.md
 
 Renumber Markdown reference-style links via the Universal Action.
 
+![Universal Action entry showing Markdown REF (Selection)](images/universal-action.png)
+
 - Select text anywhere, invoke Universal Actions, and choose
   **"Markdown REF (Selection)"** to convert the selection and paste the
   result (numbered from 1). Alfred also auto-lists the `mdref` keyword
@@ -47,6 +49,8 @@ Renumber Markdown reference-style links via the Universal Action.
 
 Alternatively, renumber the clipboard via the `mdref` keyword. Append a
 number to start renumbering from it instead of 1, e.g. `mdref 3`.
+
+![mdref keyword result](images/mdref.png)
 
 ```input.md
 This is sample[B] of this workflow[1].
