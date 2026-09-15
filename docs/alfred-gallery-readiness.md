@@ -21,7 +21,7 @@ that submission is not blocked on our side whenever that step happens.
 
 | Requirement | Status | Notes |
 |---|---|---|
-| Binaries signed and notarised | ❌ Missing | The published [v1.0.0 release](https://github.com/y-marui/alfred-markdown-ref/releases/tag/v1.0.0) binary is only ad-hoc/linker-signed (`codesign -dvvv` shows `flags=0x20002(adhoc,linker-signed)`, `TeamIdentifier=not set`; `spctl -a -vvv -t install` rejects it with "no usable signature") — it predates `.github/workflows/release.yml`'s current signing/notarization steps. Tracked in [#12](https://github.com/y-marui/alfred-markdown-ref/issues/12) |
+| Binaries signed and notarised | ✅ Done | Binary verified signed/notarised in the actual [v1.0.1 release](https://github.com/y-marui/alfred-markdown-ref/releases/tag/v1.0.1) (`codesign -dvvv`, `spctl -a -vvv -t install`, `gh attestation verify`) — supersedes the unsigned v1.0.0 |
 | No self-update | ✅ Done | Updates ship only as new `.alfredworkflow` releases; no self-update code path |
 | No self-installed external software | ✅ Done | `go.mod` has no third-party dependencies; nothing is fetched at runtime |
 | Icon ≥ 256×256 px | ✅ Done | `workflow/icon.png` is 256×256 |
