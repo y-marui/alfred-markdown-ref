@@ -42,6 +42,10 @@ leftover original label can collide with a newly-assigned number. See
 
 Full examples are in [README.md](../README.md#usage).
 
+## Privacy
+
+The Workflow processes selected/clipboard text locally, without telemetry or network transmission.
+
 ## Failure behavior
 
 An invalid start value (non-numeric, or `<= 0`), or empty input text (an
