@@ -1,7 +1,7 @@
 # Markdown REF
 
-> **このファイルは正本(日本語版)です。**
-> 英語版(参照)は [README.md](README.md) を参照してください。
+> **このファイルは正本（日本語版）です。**
+> 英語版（参照）は [README.md](README.md) を参照してください。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/y-marui/alfred-markdown-ref/actions/workflows/ci.yml/badge.svg)](https://github.com/y-marui/alfred-markdown-ref/actions/workflows/ci.yml)
@@ -85,6 +85,15 @@ This[AAAA] will be ignored.
 本文中のどこにも定義行を持たない参照も、採番自体はされる。ただし定義行は
 空欄(上の`[5]:`)になる。省略も欠番もしないため、出力の採番は常に連続し、
 元のラベルが新しい番号と衝突することもない。
+
+## Documentation
+
+| ドキュメント | 内容 |
+|---|---|
+| [docs/specification.md](docs/specification.md) | 機能仕様とデータフロー |
+| [docs/architecture.md](docs/architecture.md) | アーキテクチャとレイヤー設計 |
+| [docs/ui-design.md](docs/ui-design.md) | Alfred 結果アイテムの UI 規約 |
+| [docs/file-map.md](docs/file-map.md) | ファイル単位の依存関係 |
 
 ## Contributing
 

@@ -89,6 +89,15 @@ gets renumbered and still gets a definition line — just a blank one (`[5]:`
 above) — so the output numbering is always contiguous and never reuses a
 number a leftover label happened to already have.
 
+## Documentation
+
+| Document | Description |
+|---|---|
+| [docs/specification.md](docs/specification.md) | Functional specification and data flow |
+| [docs/architecture.md](docs/architecture.md) | Architecture and layer design |
+| [docs/ui-design.md](docs/ui-design.md) | Alfred result item UI conventions |
+| [docs/file-map.md](docs/file-map.md) | File-level dependency map |
+
 ## Contributing
 
 Issues and PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
